@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NSE.WebApp.MVC.Configurations;
+using NSE.WebApp.MVC.Services;
+using NSE.WebApp.MVC.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +28,8 @@ namespace NSE.WebApp.MVC
             services.AddAuthentication();
 
             services.AddControllersWithViews();
+
+            services.AddHttpClient<IAutenticacaoService, AutenticacaoService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
