@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,11 +26,13 @@ namespace NSE.WebApp.MVC
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication();
+            services.AddIdentityConfiguration();
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(); 
 
             services.AddHttpClient<IAutenticacaoService, AutenticacaoService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IUser, AspNetUser>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
