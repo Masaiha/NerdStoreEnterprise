@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using NSE.WebApp.MVC.Extensions;
 using NSE.WebApp.MVC.Models;
 using NSE.WebApp.MVC.Services.Interfaces;
 using System;
@@ -29,6 +30,8 @@ namespace NSE.WebApp.MVC.Controllers
         [HttpPost("nova-conta")]
         public async Task<IActionResult> Registro(UsuarioRegistro usuarioRegistro)
         {
+            throw new CustomHttpRequestException(System.Net.HttpStatusCode.NotFound);
+
             if (!ModelState.IsValid)
                 return View(usuarioRegistro);
 
@@ -45,14 +48,18 @@ namespace NSE.WebApp.MVC.Controllers
         }
 
         [HttpGet("login")]
-        public IActionResult Login()
+        public IActionResult Login(string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
+
             return View();
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(UsuarioLogin usuarioLogin)
+        public async Task<IActionResult> Login(UsuarioLogin usuarioLogin, string returnUrl = null)
         {
+            ViewData["ReturnUrl"] = returnUrl;
+
             if (!ModelState.IsValid)
                 return View(usuarioLogin);
 
@@ -63,7 +70,10 @@ namespace NSE.WebApp.MVC.Controllers
 
             await RealizarLogin(response);
 
-            return RedirectToAction("Index", "Home");
+            if(string.IsNullOrEmpty(returnUrl)) 
+                return RedirectToAction("Index", "Home");
+
+            return LocalRedirect(returnUrl);
         }
 
         [HttpGet("sair")]
