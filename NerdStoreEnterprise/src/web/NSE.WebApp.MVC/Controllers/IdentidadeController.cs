@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NSE.WebApp.MVC.Controllers
 {
-    public class IdentidadeController : Controller
+    public class IdentidadeController : MainController
     {
         private readonly IAutenticacaoService _autenticacaoService;
 
@@ -34,7 +34,8 @@ namespace NSE.WebApp.MVC.Controllers
 
             var response = await _autenticacaoService.Registro(usuarioRegistro);
 
-            //if (false)  return View(usuarioRegistro);
+            if (ResponsePossuiErros(response.ResponseResult))  
+                return View(usuarioRegistro);
 
             await RealizarLogin(response);
 
@@ -57,7 +58,8 @@ namespace NSE.WebApp.MVC.Controllers
 
             var response = await _autenticacaoService.Login(usuarioLogin);
 
-            //if (false) return View(usuarioLogin);
+            if (ResponsePossuiErros(response.ResponseResult))
+                return View(usuarioLogin);
 
             await RealizarLogin(response);
 
@@ -67,6 +69,7 @@ namespace NSE.WebApp.MVC.Controllers
         [HttpGet("sair")]
         public async Task<IActionResult> Logout()
         {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
 

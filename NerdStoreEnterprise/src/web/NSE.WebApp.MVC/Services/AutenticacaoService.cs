@@ -1,6 +1,5 @@
 ﻿using NSE.WebApp.MVC.Models;
 using NSE.WebApp.MVC.Services.Interfaces;
-using System;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -8,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NSE.WebApp.MVC.Services
 {
-    public class AutenticacaoService : IAutenticacaoService
+    public class AutenticacaoService : Service, IAutenticacaoService
     {
         private readonly HttpClient _httpClient;
 
@@ -27,10 +26,20 @@ namespace NSE.WebApp.MVC.Services
 
             var response = await _httpClient.PostAsync("https://localhost:44385/api/identidade/autenticar", loginContent);
 
+
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
             };
+
+            if (!TratarErrosResponse(response))
+            {
+                return new UsuarioRespostaLogin
+                {
+                    ResponseResult = 
+                        JsonSerializer.Deserialize<ResponseResult>(await response.Content.ReadAsStringAsync(), options)
+                };
+            }
 
             return JsonSerializer.Deserialize<UsuarioRespostaLogin>(await response.Content.ReadAsStringAsync(), options);
         }
@@ -44,6 +53,20 @@ namespace NSE.WebApp.MVC.Services
             );
 
             var response = await _httpClient.PostAsync("https://localhost:44385/api/identidade/nova-conta", registroContent);
+
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+
+            if (!TratarErrosResponse(response))
+            {
+                return new UsuarioRespostaLogin
+                {
+                    ResponseResult =
+                        JsonSerializer.Deserialize<ResponseResult>(await response.Content.ReadAsStringAsync(), options)
+                };
+            }
 
             return JsonSerializer.Deserialize<UsuarioRespostaLogin>(await response.Content.ReadAsStringAsync());
         }

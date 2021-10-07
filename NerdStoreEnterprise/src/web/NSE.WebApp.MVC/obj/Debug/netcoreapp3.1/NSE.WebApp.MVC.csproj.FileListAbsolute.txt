@@ -363,3 +363,4 @@ C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\web\NSE.WebApp.MVC\bin\D
 C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\web\NSE.WebApp.MVC\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\web\NSE.WebApp.MVC\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\web\NSE.WebApp.MVC\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\web\NSE.WebApp.MVC\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Summary\Default.cshtml.g.cs
