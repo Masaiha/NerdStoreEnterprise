@@ -75,3 +75,5 @@ C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Identidade.
 C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Identidade.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
 C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Identidade.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Identidade.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Identidade.API\bin\Debug\netcoreapp3.1\NSE.WebAPI.Core.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Identidade.API\bin\Debug\netcoreapp3.1\NSE.WebAPI.Core.pdb

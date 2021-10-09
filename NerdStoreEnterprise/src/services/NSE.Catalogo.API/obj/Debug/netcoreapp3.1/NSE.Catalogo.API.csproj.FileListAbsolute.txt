@@ -58,3 +58,13 @@ C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.AP
 C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\obj\Debug\netcoreapp3.1\NSE.Catalogo.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\NSE.WebAPI.Core.dll
+C:\Projetos\NerdStoreEnterprise\NerdStoreEnterprise\src\services\NSE.Catalogo.API\bin\Debug\netcoreapp3.1\NSE.WebAPI.Core.pdb

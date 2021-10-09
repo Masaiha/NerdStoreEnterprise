@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using NSE.Identidade.API.Data;
 using NSE.Identidade.API.Extensions;
+using NSE.WebAPI.Core.Identidade;
 using System.Text;
 
 namespace NSE.Identidade.API
@@ -46,36 +47,7 @@ namespace NSE.Identidade.API
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            //-----------------------------------------------------------------
-            //                          JWT
-            //-----------------------------------------------------------------
-            var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
-
-            var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
-
-            //configurando os schemas do jwt token
-            services.AddAuthentication(options =>
-            {
-                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-            //adicionando o midleware do jwt bearer token e configurando ele
-            }).AddJwtBearer(bearerOptions =>
-            {
-                bearerOptions.RequireHttpsMetadata = true;
-                bearerOptions.SaveToken = true;
-                bearerOptions.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidIssuer = appSettings.Emissor,
-                    ValidAudience = appSettings.ValidoEm
-                };
-            });
+            services.AddJwtConfiguration(Configuration);
             
             services.AddControllers();
 
@@ -104,8 +76,7 @@ namespace NSE.Identidade.API
 
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>
             {

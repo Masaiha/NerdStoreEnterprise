@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 using NSE.Catalogo.API.Data;
 using NSE.Catalogo.API.Data.Repository;
 using NSE.Catalogo.API.Models;
+using NSE.WebAPI.Core.Identidade;
 
 namespace NSE.Catalogo.API
 {
@@ -38,6 +40,8 @@ namespace NSE.Catalogo.API
 
             services.AddControllers();
 
+            services.AddJwtConfiguration(Configuration);
+
             services.AddCors(options => {
                 options.AddPolicy("Total", builder => {
                     builder
@@ -55,6 +59,31 @@ namespace NSE.Catalogo.API
                 {
                     Title = "NerStore Api",
                     Description = "Api De Catálogos"
+                });
+
+                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "jwt Bearer",
+                    Name = "Authorization",
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
                 });
             });
         }
@@ -75,9 +104,9 @@ namespace NSE.Catalogo.API
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
             app.UseCors("Total");
+
+            app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>
             {
