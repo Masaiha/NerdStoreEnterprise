@@ -38,12 +38,34 @@ namespace NSE.Catalogo.API
 
             services.AddControllers();
 
+            services.AddCors(options => {
+                options.AddPolicy("Total", builder => {
+                    builder
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
+
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<CatalogoDbContext>();
+
+            services.AddSwaggerGen(options => {
+                options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+                {
+                    Title = "NerStore Api",
+                    Description = "Api De Catálogos"
+                });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(option => {
+                option.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -54,6 +76,8 @@ namespace NSE.Catalogo.API
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors("Total");
 
             app.UseEndpoints(endpoints =>
             {
